@@ -1,0 +1,108 @@
+###################################
+# Author: Rahul Malhotra
+# Date: Sept. 14th/2018
+# Contact: myblog.techwithjava.com
+###################################
+###   Section of any cloudformation
+##      template document:
+#
+#  Format Version
+#  Description
+#  Parameters
+#  Resources
+#  Outputs
+# NOTE: This is a cloud formation template if you want to deploy
+# it as a beanstalk application to your AWS account
+###################################
+{
+  AWSTemplateFormatVersion: "2010-09-09",
+  Description: "This will deploy the beanstalk environment and intruper application within it",
+  Parameters: {
+      "InstancePort": {
+          "NoEcho": "true",
+          "Type": "String",
+          "Description": "Listen Port",
+          "Default": "80"
+      },
+      "AppName": {
+          "AllowedValues": ["intruperDev"],
+          "Type": "String"
+          },
+      "DropBucketName":{
+        "AllowedValues": ["emailDrop-triggers","emailDrop"],
+        "Type": "String"
+      },
+      "AWSAccountNumber": {
+        "AllowedValues": ["abc"],
+        "Type": "String"
+      },
+      "RegionId": {
+        "Type": "String",
+        "AllowedValues": ["us-east-1"]
+      }
+    },
+  Resources: {
+    AWSEC2SecurityGroup: {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Security group for EC2 Instances",
+        SecurityGroupIngress: [
+          {
+            CidrIp: "0.0.0.0/0",
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "intruperEC2Instance": {
+      "Description": "These are the EC2 instances that will host the intruper micro service",
+      "Type": "AWS::EC2::Instance",
+      "Properties":{
+        "AvailabilityZone": "us-east-1",
+        "Tags": ["intruperMicroService"],
+        "IamInstanceProfile": "",
+        "KeyName": "",
+        "LaunchTemplate": "",
+        "ImageId": "ami-6871a115",
+        "InstanceType": "t2.small",
+        "SecurityGroupIds" : [ String, ... ],
+         "SecurityGroups" : [ String, ... ],
+        "SubnetId":"",
+        "UserData":{
+
+        },
+        "Network": "vpc-c50e51a3"
+      }
+    },
+    "intruderAlertEmailS3Bucket": {
+      "Description": "This is where email attachments will be dropped by the bean stalk application",
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        BucketName: { "Fn::Join" : [ "-" , [{Ref: "AWSAccountNumber"},"emaildrop-triggers"]]}
+      }
+    },
+    "intruderAlertEmailS3Bucketpolicy":{
+      "Description": "Provides read access to beanstalk application",
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+         "Ref": "intruderAlertEmailS3Bucket",
+        },
+        "PolicyDocument": {
+         "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "AWS": { "Fn::Join" : [ ":" , ["arn:aws:iam:",{Ref: "AWSAccountNumber"},"role/aws-elasticbeanstalk-service-role"]]}
+                },
+                "Action": "s3:*",
+                "Resource": {"Fn::Join" : [ ":::", ["arn:aws:s3", { "Fn::Join" : [ "-" , [{Ref: "AWSAccountNumber"},"emaildrop-triggers"]]}]]}
+            }
+         ]
+        }
+      }
+    }
+  }
+}

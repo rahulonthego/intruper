@@ -1,0 +1,1 @@
+web: SPRING_PROFILES_ACTIVE=production java -jar application-0.1.0.jar

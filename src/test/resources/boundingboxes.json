@@ -1,0 +1,195 @@
+{
+  BoundingBox: {
+    Width: 0.05234375,
+    Height: 0.06979167,
+    Left: 0.01328125,
+    Top: 0.6458333
+  },
+  AgeRange: {
+    Low: 16,
+    High: 27
+  },
+  Smile: {
+    Value: true,
+    Confidence: 82.570526
+  },
+  Eyeglasses: {
+    Value: true,
+    Confidence: 99.58098
+  },
+  Sunglasses: {
+    Value: false,
+    Confidence: 71.86298
+  },
+  Gender: {
+    Value: Female,
+    Confidence: 99.96906
+  },
+  Beard: {
+    Value: false,
+    Confidence: 99.985596
+  },
+  Mustache: {
+    Value: false,
+    Confidence: 98.2301
+  },
+  EyesOpen: {
+    Value: false,
+    Confidence: 99.999985
+  },
+  MouthOpen: {
+    Value: false,
+    Confidence: 79.56278
+  },
+  Emotions: [
+    {
+      Type: HAPPY,
+      Confidence: 68.30623
+    },
+    {
+      Type: CALM,
+      Confidence: 10.558891
+    },
+    {
+      Type: SAD,
+      Confidence: 1.5296876
+    }
+  ],
+  Landmarks: [
+    {
+      Type: eyeLeft,
+      X: 0.032937102,
+      Y: 0.6880342
+    },
+    {
+      Type: eyeRight,
+      X: 0.03283223,
+      Y: 0.6656924
+    },
+    {
+      Type: nose,
+      X: 0.0431156,
+      Y: 0.6815033
+    },
+    {
+      Type: mouthLeft,
+      X: 0.05149994,
+      Y: 0.6857975
+    },
+    {
+      Type: mouthRight,
+      X: 0.050595142,
+      Y: 0.6681792
+    },
+    {
+      Type: leftPupil,
+      X: 0.032553375,
+      Y: 0.6901025
+    },
+    {
+      Type: rightPupil,
+      X: 0.03309008,
+      Y: 0.6647026
+    },
+    {
+      Type: leftEyeBrowLeft,
+      X: 0.026045639,
+      Y: 0.69406533
+    },
+    {
+      Type: leftEyeBrowUp,
+      X: 0.025753925,
+      Y: 0.69031423
+    },
+    {
+      Type: leftEyeBrowRight,
+      X: 0.026280243,
+      Y: 0.6868477
+    },
+    {
+      Type: rightEyeBrowLeft,
+      X: 0.02654088,
+      Y: 0.6704391
+    },
+    {
+      Type: rightEyeBrowUp,
+      X: 0.025313994,
+      Y: 0.6653461
+    },
+    {
+      Type: rightEyeBrowRight,
+      X: 0.026293647,
+      Y: 0.6602525
+    },
+    {
+      Type: leftEyeLeft,
+      X: 0.032832343,
+      Y: 0.69149286
+    },
+    {
+      Type: leftEyeRight,
+      X: 0.0334396,
+      Y: 0.6845781
+    },
+    {
+      Type: leftEyeUp,
+      X: 0.032083027,
+      Y: 0.6878351
+    },
+    {
+      Type: leftEyeDown,
+      X: 0.033592314,
+      Y: 0.68823206
+    },
+    {
+      Type: rightEyeLeft,
+      X: 0.033397652,
+      Y: 0.6691441
+    },
+    {
+      Type: rightEyeRight,
+      X: 0.032585803,
+      Y: 0.6621234
+    },
+    {
+      Type: rightEyeUp,
+      X: 0.032184843,
+      Y: 0.665857
+    },
+    {
+      Type: rightEyeDown,
+      X: 0.033320136,
+      Y: 0.66558653
+    },
+    {
+      Type: noseLeft,
+      X: 0.046106428,
+      Y: 0.6839026
+    },
+    {
+      Type: noseRight,
+      X: 0.045748405,
+      Y: 0.6743084
+    },
+    {
+      Type: mouthUp,
+      X: 0.050322294,
+      Y: 0.67880374
+    },
+    {
+      Type: mouthDown,
+      X: 0.05308312,
+      Y: 0.678317
+    }
+  ],
+  Pose: {
+    Roll: -89.831985,
+    Yaw: -16.24062,
+    Pitch: -10.364447
+  },
+  Quality: {
+    Brightness: 24.045763,
+    Sharpness: 67.3615
+  },
+  Confidence: 96.27041
+}

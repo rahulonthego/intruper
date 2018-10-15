@@ -1,0 +1,103 @@
+logging:
+  level:
+    root: INFO
+    com.intuit.ml: DEBUG
+    org.springframework: INFO
+    org.hibernate: INFO
+spring:
+  application:
+    admin:
+      enabled: true
+    name: intruper
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+          hibernate:
+            show_sql: true
+            use_sql_comments: true
+            format_sql: true
+    database: h2
+  datasource:
+    url: 'jdbc:h2:mem:intruper;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE'
+    username: sa
+    driver-class-name: 'org.h2.Driver'
+  profiles:
+    active: dev
+  h2:
+    console:
+      enabled: true
+service:
+  http:
+    sync:
+      socket-timeout: 5000
+      conn-timeout: 5000
+      req-timeout: 5000
+    proxy:
+      port: 5000
+processor:
+  emailProcessor:
+aws:
+  client:
+    awsClientMaxConnections: '10'
+    awsRegion: "us-east-1"
+  s3:
+    awsRegion: "us-east-1"
+    bucket: ''
+    profile: default
+com:
+  gmail:
+    protocol: 'pop3'
+    folder: 'INBOX'
+    host: 'pop.gmail.com'
+    port: 995
+    enableTLS: true
+    email: ''
+    password: ''
+    factoryClass: javax.net.ssl.SSLSocketFactory
+management:
+  endpoint:
+    metrics:
+      enabled: true
+google:
+  project: ''
+  location: ''
+  model: ''
+  credentialsFile: ''
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:h2:mem:intruper;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+  jpa:
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    root: INFO
+    com.zomasystems: DEBUG
+processor:
+  emailProcessor:
+aws:
+  s3:
+    profile: your-profile
+---
+spring:
+  profiles: test
+logging:
+  level:
+    root: INFO
+    com.zomasystems: INFO
+---
+spring:
+  profiles: production
+logging:
+  level:
+    root: INFO
+    com.zomasystems: INFO
+processor:
+  emailProcessor:
+aws:
+  s3:
+    profile: some-other-profile

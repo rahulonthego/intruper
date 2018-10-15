@@ -1,0 +1,88 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.4.RELEASE'
+        awsSDKVersion = '1.11.401'
+        sourceCompatibility = 1.8
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.4.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'application'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+group 'com.zomasystems'
+version '0.10-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-mail")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    compile("com.google.guava:guava:26.0-jre")
+
+    compile("com.amazonaws:aws-java-sdk:1.11.401")
+
+    compile group: "com.twilio.sdk", name: "twilio", version: "7.24.2"
+    compile group: "com.twelvemonkeys", name: "twelvemonkeys", version: "3.4.1"
+
+    compile group: "com.google.api-client", name: "google-api-client", version: "1.25.0"
+    compile group: "com.google.cloud", name: "google-cloud-automl", version: "0.64.0-beta"
+    compile group: "com.google.cloud", name: "google-cloud-datastore", version: "1.12.0"
+    compile group: "com.google.cloud", name: "google-cloud-vision", version: "1.40.0"
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.5.1'
+}
+
+tasks.create('copyJar', Copy) {
+    from(file('build/libs/'))
+    into(projectDir)
+}
+
+task sourceZip(type: Zip) {
+    classifier = 'sources'
+    from( '.' ) {
+        include 'build.gradle'
+        include 'settings.gradle'
+        include 'Procfile'
+        include 'src/**'
+        include 'resources/**'
+        include 'application-0.1.0.jar'
+        include 'README.md'
+        include 'pom.xml'
+        include 'gradlew'
+        include 'mvnw'
+    }
+}
+task copyZip(type: Copy){
+    from(file('build/distributions/intruper-0.10-SNAPSHOT-sources.zip'))
+    into (projectDir)
+}
+//sourceZip.dependsOn(copyJar)
+//copyZip.dependsOn(sourceZip)
+//build.dependsOn(copyZip)
+
