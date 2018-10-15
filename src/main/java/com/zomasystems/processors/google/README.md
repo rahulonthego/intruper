@@ -15,19 +15,19 @@ FAQs
 - How to connect?
 
 <code>
-gcloud compute --project "eco-signifier-218004" ssh --zone "us-central1-c" "intruper-app-instance"
+gcloud compute --project "" ssh --zone "us-central1-c" "app-instance"
 </code>
 <br>
 <br>
 - How to copy files to your instance?
 <br>
 <code>
-gcloud compute scp build/libs/application-0.1.0.jar rmalhotra@intruper-app-instance: 
+gcloud compute scp build/libs/application-0.1.0.jar -app-instance: 
 </code>
 <br>
 <br>
 - How to run the app?
 <br>
 <code>
-AWS_REGION="us-east-1" AWS_ACCESS_KEY=AKIAJQKJ5UALKWAV4OJQ  AWS_SECRET_ACCESS_KEY=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 SPRING_PROFILES_ACTIVE=production java -jar application-0.1.0.jar &
+AWS_REGION="us-east-1" AWS_ACCESS_KEY=  AWS_SECRET_ACCESS_KEY= SPRING_PROFILES_ACTIVE=production java -jar application-0.1.0.jar &
 </code>
